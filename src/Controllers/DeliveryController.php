@@ -4,6 +4,8 @@ namespace App\Controllers;
 
 use App\Controllers\Dtos\DeliveryDto;
 use App\Controllers\Params\GetDeliveryPricesParams;
+use App\Domains\Models\Deny;
+use App\Domains\Models\Type;
 use Yii;
 use yii\filters\ContentNegotiator;
 use yii\web\BadRequestHttpException;
@@ -40,14 +42,53 @@ class DeliveryController extends Controller
             throw new BadRequestHttpException();
         }
 
-        // todo найти список типов лоставки из таблицы type
+        /** @var DeliveryDto[] $dtos */
+        $dtos = [];
+        $deny_type_list = [];
+        $search = Yii::$app->request->get('search');
+        $types = Type::find()->asArray()->all();
+        $deny = Deny::find()->where(['city' => $search])->asArray()->all();
+
+        foreach ($deny as $d){
+            array_push($deny_type_list, $d['type']);
+        }
+
+        foreach ($types as $t) {
+            $available = true;
+
+            if (in_array($t['type'], $deny_type_list)) {
+                $available = false;
+            }
+
+            $delivery = [
+                'city' => $search,
+                'type' => $t['type'],
+                'available' => $available,
+                'price' => (float) $t['price'],
+            ];
+
+            array_push($dtos, $delivery);
+
+        }
+
+
+        // todo найти список типов доставки из таблицы type
         // todo создать список город + тип
         // todo проверить город на корректность имени (разрешены латинские символы, пробелы и тире)
         // todo проверить наличие города в таблице deny
         // todo создать список dto с ценами для типов доставки
 
-        /** @var DeliveryDto[] $dtos */
-        $dtos = [];
         return $dtos;
+    }
+
+    public function actionIndex()
+    {
+        $name = 'Zhal';
+        $age = 19;
+
+        return $this->render('index', [
+            'name' => $name,
+            'age' => $age,
+        ]);
     }
 }

@@ -12,7 +12,7 @@ class GetDeliveryPricesParams extends Model
     public function rules()
     {
         return [
-            ['search', 'required']
+            ['search', 'required', 'match', 'pattern' => '/^[a-z\s-]+$/i']
         ];
     }
 

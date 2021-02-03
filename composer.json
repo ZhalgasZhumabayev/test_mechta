@@ -17,7 +17,8 @@
         "php": ">=7.4.0",
         "ext-json": "*",
         "yiisoft/yii2": "~2.0.14",
-        "doctrine/orm": "^2.6.2"
+        "doctrine/orm": "^2.6.2",
+        "yidas/yii2-bower-asset": "2.0.13.1"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.1.0",

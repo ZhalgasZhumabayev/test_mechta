@@ -3,12 +3,13 @@
 namespace App\Domains\Models;
 
 use Doctrine\ORM\Mapping as ORM;
-
+use Yii;
+use yii\db\ActiveRecord;
 /**
  * @ORM\Entity()
  * @ORM\Table(name="domain")
  */
-class Deny
+class Deny extends ActiveRecord
 {
     /**
      * @var int
