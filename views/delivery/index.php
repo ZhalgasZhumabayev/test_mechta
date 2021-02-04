@@ -1,26 +1,20 @@
-<?php
-
-use antkaz\vue\VueAsset;
-VueAsset::register($this); // register VueAsset
-?>
-
-<div id="app" class="vue">
-
-    <p>{{ message }}</p>
-    <button v-on:click="reverseMessage">Reverse Message</button>
-
-</div>
+<template>
+    <div>
+        <hello-world :msg="text"></hello-world>
+    </div>
+</template>
 
 <script>
-    var app = new Vue({
-        el: '#app',
-        data: {
-            message: 'Hello Vue.js!'
+    import HelloWorld from "./components/main.vue";
+    export default {
+        components: {
+          'hello-world': HelloWorld
         },
-        methods: {
-            reverseMessage: function () {
-                this.message = this.message.split('').reverse().join('')
+        name: "App",
+        data: function () {
+            return {
+                text: 'Hello World!!!'
             }
-        }
-    })
+        }    
+}
 </script>

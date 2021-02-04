@@ -7,7 +7,7 @@ return [
     'components' => [
         'db' => require __DIR__ . '/test_db.php',
         'request' => [
-            'scriptFile' => dirname(__DIR__) . '/web/index-test.php',
+            'scriptFile' => dirname(__DIR__) . '/web/index.php',
         ],
     ],
     'container' => require __DIR__ . '/container.php',

@@ -1,29 +1,34 @@
 <?php
+   /* @var $this \yii\web\View */
+   /* @var $content string */
+   use yii\helpers\Html;
+   use app\assets\VueAsset;
 
-use yii\helpers\Html;
-
+   VueAsset::register($this);
 ?>
 
 <?php $this->beginPage() ?>
-
 <!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8"/><?= Html::csrfMetaTags() ?>
-        <title><?= Html::encode($this->title) ?></title>
-        <?php $this->head() ?>
-
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
-    </head>
-    <body>
-        <?php $this->beginBody() ?>
-        <header>Моя компания</header>
-        <?= $content ?>
-        <footer>Моя компания &copy; 2014</footer>
-        <?php $this->endBody() ?>
-    </body>
+<html lang = "<?= Yii::$app->language ?>">
+   <head>
+      <meta charset = "<?= Yii::$app->charset ?>">
+      <meta name = "viewport" content = "width = device-width, initial-scale = 1">
+      <?= Html::csrfMetaTags() ?>
+      <title><?= Html::encode($this->title) ?></title>
+      <?php $this->head() ?>
+   </head>
+	
+   <body>
+      <?php $this->beginBody() ?>
+         
+         <footer class = "footer">
+            <div class = "container">
+               <p class = "pull-left">© My Company <?= date('Y') ?></p>
+               <p class = "pull-right"><?= Yii::powered() ?></p>
+            </div>
+         </footer>
+			
+      <?php $this->endBody() ?>
+   </body>
 </html>
-
 <?php $this->endPage() ?>
-
