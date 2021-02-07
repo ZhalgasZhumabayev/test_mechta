@@ -19,10 +19,10 @@
         "yiisoft/yii2": "~2.0.14",
         "doctrine/orm": "^2.6.2",
         "yidas/yii2-bower-asset": "2.0.13.1",
-        "antkaz/yii2-vue": "^1.0"
+        "antkaz/yii2-vue": "^1.0",
+        "yiisoft/yii2-debug": "^2.1"
     },
     "require-dev": {
-        "yiisoft/yii2-debug": "~2.1.0",
         "yiisoft/yii2-gii": "~2.1.0",
         "yiisoft/yii2-faker": "~2.0.0",
 

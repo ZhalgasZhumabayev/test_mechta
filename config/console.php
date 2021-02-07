@@ -9,6 +9,9 @@ return [
         'request' => [
             'scriptFile' => dirname(__DIR__) . '/web/index.php',
         ],
+        'log' => [
+            'traceLevel' => YII_DEBUG ? 3 : 0,
+        ],
     ],
     'container' => require __DIR__ . '/container.php',
 ];

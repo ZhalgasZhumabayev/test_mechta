@@ -20,12 +20,12 @@ class DeliveryController extends Controller
     public function behaviors(): array
     {
         $behaviors = parent::behaviors();
-        $behaviors['contentNegotiator'] = [
-            'class' => ContentNegotiator::class,
-            'formats' => [
-                'application/json' => Response::FORMAT_JSON,
-            ],
-        ];
+//        $behaviors['contentNegotiator'] = [
+//            'class' => ContentNegotiator::class,
+//            'formats' => [
+//                'application/json' => Response::FORMAT_JSON,
+//            ],
+//        ];
         return $behaviors;
     }
 
@@ -37,6 +37,7 @@ class DeliveryController extends Controller
      */
     public function actionCheck(): array
     {
+        \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
         $params = new GetDeliveryPricesParams();
         if (!$params->load(Yii::$app->request->get(), '') || !$params->validate()) {
             throw new BadRequestHttpException();
@@ -48,6 +49,10 @@ class DeliveryController extends Controller
         $search = Yii::$app->request->get('search');
         $types = Type::find()->asArray()->all();
         $deny = Deny::find()->where(['city' => $search])->asArray()->all();
+
+        if ($deny == null) {
+            return $dtos;
+        }
 
         foreach ($deny as $d){
             array_push($deny_type_list, $d['type']);
@@ -61,6 +66,7 @@ class DeliveryController extends Controller
             }
 
             $delivery = [
+                'id' => (int) $t['id'],
                 'city' => $search,
                 'type' => $t['type'],
                 'available' => $available,

@@ -1,14 +1,14 @@
 <template>
     <div>
-        <hello-world :msg="text"></hello-world>
+        <main :msg="text"></main>
     </div>
 </template>
 
 <script>
-    import HelloWorld from "./components/main.vue";
+    import Main from "./components/main.vue";
     export default {
         components: {
-          'hello-world': HelloWorld
+          'main': Main
         },
         name: "App",
         data: function () {
